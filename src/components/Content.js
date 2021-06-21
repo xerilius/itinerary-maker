@@ -80,7 +80,7 @@ export default function Content({ data, time, price }) {
   }
        
   return (
-      <div className="content"> TimeLeft{timeLeft} Time:{time} Price:{price}
+      <div className="content">
           <AvailableAttractions 
             data={data} 
             addAttr={addAttr} 
