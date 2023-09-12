@@ -6,6 +6,9 @@ export function ItineraryCard(props) {
 
   let price;
   switch (attr.price) {
+    case 0:
+      price = "Free";
+      break;
     case 1:
       price = "$";
       break;
@@ -16,7 +19,6 @@ export function ItineraryCard(props) {
       price = "$$$";
       break;
     default:
-      price = "Free";
       break;
   }
 

@@ -24,3 +24,21 @@
     max-width: 45%;
   }
 }
+
+.NoResults {
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  color: black;
+  font-weight: 600;
+  border: 4px solid #f8f8f8cb;
+  border-radius: 10px;
+  width: 80%;
+  margin: 10px 0;
+  padding: 20px;
+  text-align: center;
+
+  background-color: #ffffffd3;
+  backdrop-filter: blur(5px);
+  box-shadow: #000000a5 1px 0 5px;
+  height: 100px;
+}

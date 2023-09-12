@@ -2,20 +2,16 @@ import React from "react";
 import { ItineraryCard } from "../ItineraryCard";
 import styles from "./CurrentAttractions.module.scss";
 
-export function CurrentAttractions(props) {
-  let { data, itin, rmAttr, hrs } = props;
+export function CurrentAttractions({ data, itin, rmAttr, hrs }) {
   let currItin;
 
-  function getDetailsFromItineraryIDs() {
-    const attrDetails = [];
-    for (let i = 0; i < itin.length; i++) {
-      attrDetails.push(data[itin[i]]);
-    }
-    currItin = attrDetails.map((attr) => (
-      <ItineraryCard attr={attr} rmAttr={rmAttr} />
-    ));
+  const attrDetails = [];
+  for (let i = 0; i < itin.length; i++) {
+    attrDetails.push(data[itin[i]]);
   }
-  getDetailsFromItineraryIDs();
+  currItin = attrDetails.map((attr, i) => (
+    <ItineraryCard key={`${attr}-${i}`} attr={attr} rmAttr={rmAttr} />
+  ));
 
   return (
     <div className={styles.CurrentAttractions}>

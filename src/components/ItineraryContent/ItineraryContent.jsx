@@ -3,80 +3,69 @@ import { AvailableAttractions } from "../AvailableAttractions";
 import { CurrentAttractions } from "../CurrentAttractions";
 import styles from "./ItineraryContent.module.scss";
 
-export function ItineraryContent({ data, time, price }) {
+export function ItineraryContent({ ids, data, time, price }) {
   const [available, setAvailable] = useState([]);
   const [itinerary, setItinerary] = useState([]);
   const [itineraryHrs, setItineraryHrs] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(time);
+  const [timeLeft, setTimeLeft] = useState(16);
 
   useEffect(() => {
-    let IDs = [];
-    data.map((attr) => IDs.push(attr.id));
-    setAvailable(IDs);
-  }, [data]);
+    let availableIDs = [];
+    let filteredAvailableIDs = [];
 
-  useEffect(() => {
-    if (time && price) {
-      let timeRemaining = time - itineraryHrs;
-
-      let filtered = [...data].filter(
-        (attr) => attr.time <= timeRemaining && attr.price === price
-      );
-
-      let availableIDs = [];
-      let filteredAvailableIDs = [];
-      filtered.map((attr) => availableIDs.push(attr.id));
-
-      for (let i = 0; i < availableIDs.length; i++) {
-        if (!itinerary.includes(availableIDs[i])) {
-          filteredAvailableIDs.push(availableIDs[i]);
-        }
+    let filtered = [...data].filter((attr) => attr.price === price);
+    let filtered2 = [...filtered].filter(
+      (attr) => attr.time === time && attr.price === price
+    );
+    filtered2.map((attr) => availableIDs.push(attr.id));
+    for (let i = 0; i < availableIDs.length; i++) {
+      if (!itinerary.includes(availableIDs[i])) {
+        filteredAvailableIDs.push(availableIDs[i]);
       }
-      setAvailable(filteredAvailableIDs);
-      setTimeLeft(timeRemaining);
     }
-  }, [data, itinerary, itineraryHrs, time, price, timeLeft]);
+    setAvailable(filteredAvailableIDs);
+  }, [data, price, time, itinerary]);
 
   useEffect(() => {
     if (itineraryHrs === 0) {
-      setTimeLeft(time);
+      setTimeLeft(16);
     }
-  }, [time, itineraryHrs]);
+  }, [itineraryHrs]);
 
   function addAttr(id) {
-    if (itinerary.find((itinID) => itinID === id)) {
-      alert("This attraction is already in your itinerary.");
-    } else {
-      let addPlace = data[id];
-      if (addPlace.time > timeLeft) {
-        return alert("This exceeds your max total amount of time");
-      }
-
-      let count = 0;
-      for (let i = 0; i < itinerary.length; i++) {
-        count += data[itinerary[i]].time;
-      }
-      let total = count + parseInt(addPlace.time);
-      let maxTime = time;
-      let updatedAvail = [...available].filter((attrID) => attrID !== id);
-
-      setTimeLeft(maxTime - total);
-      setAvailable(updatedAvail);
-      setItinerary([...itinerary, addPlace.id]);
-      setItineraryHrs(total);
+    let addPlace = data[id];
+    console.log(itinerary);
+    if (addPlace.id in itinerary) {
+      return alert("This attraction is already in your itinerary.");
     }
+    if (addPlace.time > timeLeft) {
+      return alert("This exceeds your max total amount of time");
+    }
+
+    let itnTotal = 0;
+    for (let i = 0; i < itinerary.length; i++) {
+      itnTotal += data[itinerary[i]].time;
+    }
+
+    const currItnTime = itnTotal + parseInt(addPlace.time);
+    const updatedAvail = [...available].filter((attrID) => attrID !== id);
+    console.log([...itinerary, addPlace.id]);
+    setTimeLeft(16 - currItnTime);
+    setItineraryHrs(currItnTime);
+    setAvailable(updatedAvail);
+    setItinerary([...itinerary, addPlace.id]);
+    return;
   }
 
   function rmAttr(id) {
     let rmPlaceID = [...itinerary].find((attrID) => attrID === id);
     let addAttrIDToAvail = [...available, rmPlaceID];
     let rmItinerary = [...itinerary].filter((attrID) => attrID !== id);
-    let hours = itineraryHrs;
 
     setAvailable(addAttrIDToAvail);
     setItinerary(rmItinerary);
-    setItineraryHrs(hours - data[rmPlaceID].time);
-    setTimeLeft(hours + parseInt(data[rmPlaceID].time));
+    setItineraryHrs(itineraryHrs - data[rmPlaceID].time);
+    setTimeLeft(itineraryHrs + data[rmPlaceID].time);
   }
 
   return (
@@ -84,7 +73,7 @@ export function ItineraryContent({ data, time, price }) {
       <AvailableAttractions
         data={data}
         addAttr={addAttr}
-        available={available}
+        available={available.length < 1 ? available : ids}
       />
       <CurrentAttractions
         data={data}

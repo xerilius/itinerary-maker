@@ -5,21 +5,23 @@ import styles from "./Itinerary.module.scss";
 import data from "../../data/data.json";
 
 export function Itinerary() {
-  const [totalTime, setTotalTime] = useState(16);
-  const [priceRange, setPriceRange] = useState(null);
+  const [time, setTime] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(16);
+  const [price, setPrice] = useState(null);
+
   const processedData = data.attractions.map((attr, i) => ({ ...attr, id: i }));
+  const ids = [...Array(data.attractions.length).keys()];
 
   return (
     <div className={styles.Itinerary}>
-      <Filter
-        setTime={setTotalTime}
-        setPrice={setPriceRange}
-        price={priceRange}
-      />
+      <Filter setTime={setTime} setPrice={setPrice} price={price} />
       <ItineraryContent
         data={processedData}
-        time={totalTime}
-        price={priceRange}
+        ids={ids}
+        time={time}
+        price={price}
+        setTimeLeft={setTimeLeft}
+        timeLeft={timeLeft}
       />
     </div>
   );
