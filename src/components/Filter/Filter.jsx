@@ -4,7 +4,7 @@ import styles from "./Filter.module.scss";
 export function Filter({ setTime, setPrice, price }) {
   return (
     <div className={styles.Filter}>
-      <h1 className={styles.Header}>Welcome to Paris</h1>
+      <h1 className={styles.Header}>Paris</h1>
       <div className={styles.ItineraryFilters}>
         <div className={styles.Time}>
           <span className={styles.Label}>Total Amount of Time:</span>
@@ -26,6 +26,7 @@ export function Filter({ setTime, setPrice, price }) {
         </div>
         <div className={styles.Price}>
           <span className={styles.Label}> Price:</span>
+
           <button
             className={`${price === 0 ? styles.ActivePrice : ""}`}
             value={0}

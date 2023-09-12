@@ -21,7 +21,7 @@ export function CurrentAttractions(props) {
     <div className={styles.CurrentAttractions}>
       <h3 className={styles.Header}>
         <i className="fas fa-plane"></i>
-        Current Itinerary - {hrs} hours
+        Current Itinerary ({hrs} hrs)
       </h3>
       {currItin}
     </div>
