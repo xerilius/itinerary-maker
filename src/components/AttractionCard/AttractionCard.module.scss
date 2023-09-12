@@ -1,0 +1,54 @@
+.AttractionCard {
+  border: 4px solidrgba(255, 255, 255, 0.481);
+  border-radius: 10px;
+  width: 500px;
+  margin: 10px 0;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.481);
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Raleway", sans-serif;
+}
+
+.Button {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  color: white;
+  background-color: #30343b;
+  border: none;
+
+  &:hover {
+    background-color: #6b778c;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.Label {
+  display: flex;
+  padding: 0 0 15px 0;
+
+  & span {
+    margin-right: 15px;
+    padding: 5px 10px;
+    border-radius: 7px;
+  }
+}
+
+.PriceRange {
+  background-color: #ffffffe0;
+  font-weight: 700;
+  margin-right: 15px;
+  padding: 5px 10px;
+  border-radius: 7px;
+
+  &:hover {
+    background-color: #6b778c;
+  }
+}

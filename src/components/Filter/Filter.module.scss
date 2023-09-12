@@ -1,0 +1,78 @@
+.Filter {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 25px;
+  background-image: url(https://images.unsplash.com/photo-1495442358998-961b69f45703?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80);
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: cover;
+  height: 500px;
+  border-radius: 5px;
+}
+
+.Header {
+  font-family: "Dancing Script", cursive;
+  font-size: 7rem;
+  display: flex;
+  justify-content: center;
+  color: white;
+  text-shadow: 3px 3px #00000022, -5px 0px #00000012;
+}
+
+.ItineraryFilters {
+  margin-top: 100px;
+  background-color: #ffffffa4;
+  height: 50px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  & div {
+    padding-right: 25px;
+    font-family: "Raleway", sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #30343b;
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.09), -5px 0px rgba(0, 0, 0, 0.049);
+    padding-top: 5px;
+  }
+}
+.Time,
+.Price {
+  display: flex;
+  align-items: center;
+}
+.Price {
+  button {
+    font-family: "Raleway", sans-serif;
+    border-radius: 5px;
+    padding: 7px 10px;
+    text-align: center;
+    background-color: white;
+    outline: none;
+    border: 0;
+    margin: 0 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: pink;
+    }
+  }
+
+  .ActivePrice {
+    background-color: pink;
+  }
+}
+
+.Label {
+  margin-right: 10px;
+}
+
+select {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+}

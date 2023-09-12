@@ -1,11 +1,11 @@
-import React from 'react';
-import Paris from './components/Paris';
-import './App.css';
+import React from "react";
+import { Itinerary } from "./components";
+import style from "./App.module.scss";
 
 export default function App() {
   return (
-    <div className="app">
-      <Paris />
+    <div className={style.App}>
+      <Itinerary />
     </div>
   );
 }

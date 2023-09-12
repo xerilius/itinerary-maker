@@ -1,0 +1,8 @@
+.ItineraryContent {
+  display: flex;
+  justify-content: center;
+
+  & > div {
+    padding: 10px;
+  }
+}

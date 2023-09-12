@@ -1,0 +1,14 @@
+.AvailableAttractions {
+  min-width: 550px;
+}
+
+.Header {
+  font-family: "Raleway", sans-serif;
+  font-size: 2rem;
+  text-shadow: 3px 3px rgba(0, 0, 0, 0.09), -5px 0px rgba(0, 0, 0, 0.049);
+  color: white;
+
+  & > * {
+    margin-right: 20px;
+  }
+}
